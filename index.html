@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pizzaria</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="script.js"></script>
+        <script>
+            $(function(){
+                $("#fechar").click(function(){
+                    $("#resultado").empty();
+                    if(validaCampos()==true){
+                        var nome = $("#nome").val();
+                        var tel = $("#tel").val();
+                        var ende = $("#endereco").val();
+                        var sabor = $("#sabores").val();
+                        var ingextra = $("#ing").val();
+                        var pagamento = $("#pag").val();
+                        var tipo_t = parseInt($("input[name=tamanho]:checked").val());
+                        var total = parseFloat(totalpagar());
+                        if(total==-1){
+                        }
+                        else  if(total<30.00){
+                            $("#resultado").css("background-color","#99c2e6");
+                            $("#resultado").css("margin","auto");
+                            $("#resultado").css("margin-top","10px");
+                            $("#resultado").css("width","500px");
+                            $("#resultado").css("padding","10px");
+                            $("#resultado").css("border","2px solid #2b55c7");
+                            $("#resultado").css("box-sizing","border-box");
+                            $("#resultado").append(
+                                "<br> Nome: "+ nome + 
+                                "<br> Telefone: "+ tel +
+                                "<br> Endereço: "+ ende+
+                                "<br> Sabor: "+sabor+
+                                "<br> Ingrediente Extra: "+ingextra+
+                                "<br> Valor a pagar: "+total+
+                                "<br> Forma de pagamento: "+pagamento);
+                        }
+                        else if(total<40.00){
+                            $("#resultado").css("background-color","#e29191");
+                            $("#resultado").css("margin","auto");
+                            $("#resultado").css("margin-top","10px");
+                            $("#resultado").css("width","500px");
+                            $("#resultado").css("padding","10px");
+                            $("#resultado").css("border","2px solid #c72b2b");
+                            $("#resultado").css("box-sizing","border-box");
+                            $("#resultado").append(
+                                "<br> Nome: "+ nome + 
+                                "<br> Telefone: "+ tel +
+                                "<br> Endereço: "+ ende+
+                                "<br> Sabor: "+sabor+
+                                "<br> Ingrediente Extra: "+ingextra+
+                                "<br> Valor a pagar: "+total+
+                                "<br> Forma de pagamento: "+pagamento);
+                        }
+                        else{
+                            $("#resultado").css("background-color","#95ce91");
+                            $("#resultado").css("margin","auto");
+                            $("#resultado").css("margin-top","10px");
+                            $("#resultado").css("width","500px");
+                            $("#resultado").css("padding","10px");
+                            $("#resultado").css("border","2px solid #37c72b");
+                            $("#resultado").css("box-sizing","border-box");
+                            $("#resultado").append(
+                                "<br> Nome: "+ nome + 
+                                "<br> Telefone: "+ tel +
+                                "<br> Endereço: "+ ende+
+                                "<br> Sabor: "+sabor+
+                                "<br> Ingrediente Extra: "+ingextra+
+                                "<br> Valor a pagar: "+total+
+                                "<br> Forma de pagamento: "+pagamento);
+                        }
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h3>Monte sua Pizza</h3>
+        <form id="form1">
+            <fieldset>
+                <legend><strong>Dados do Cliente</strong></legend>
+                <strong>Nome:</strong><br/>
+                <input type="text" id="nome"><br/><br/>
+                <strong>Telefone:</strong><br/>
+                <input type="text" id="tel"><br/><br/>
+                <strong> Endereço:</strong><br/>
+                <input type="text" id="endereco"><br/>
+                <span id="vazio"></span>
+            </fieldset>
+        </form> 
+        <p id="resultado"></p>
+        <form id="form2">
+            <fieldset>
+                <legend><strong>Dados do Pedido</strong></legend>
+                <strong>Tamanho: </strong>
+                <input type="radio" name="tamanho" id="p" value="1">Brotinho
+                <input type="radio" name="tamanho" id="m" value="2">Média
+                <input type="radio" name="tamanho" id="g" value="3"> Grande <br/><span id="esctam"></span><br/>
+                <strong>Sabores:</strong> <br/>
+                <select id="sabores">
+                    <option value="">--Escolha um Sabor--</option>
+                    <option value="Calabresa">Calabresa</option>
+                    <option value="Mussarela">Mussarela</option>
+                    <option value="Frango">Frango</option>
+                    <option value="Bacon">Bacon</option>
+                    <option value="Atum">Atum</option>
+                </select>
+                <span id="svazio"></span>
+                <br/><br/>
+                <strong>Ingrediente Extra:</strong><br/>
+                <input list="ingrediente" name="extra" id="ing"/>
+                <datalist id="ingrediente">
+                    <option value="Cebola">
+                    <option value="Tomate">
+                    <option value="Milho">
+                    <option value="Outros">
+                </datalist><br/>
+            </fieldset>
+        </form>
+        <form id="form3">
+            <fieldset>
+                <legend><strong>Forma de Pagamento</strong></legend> 
+                <select id="pag">
+                    <option value="Dinheiro">Dinheiro </option>
+                    <option value="Débito">Débito </option>
+                    <option value="Crédito">Crédito </option>
+                </select><br/><br/>
+                <input type="button" id="fechar" value="Fechar Pedido">
+            </fieldset>
+        </form>
+    </body>
+</html>
